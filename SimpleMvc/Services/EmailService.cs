@@ -8,6 +8,11 @@ namespace SimpleMvc.Services
 {
     public class EmailService : IEmailService
     {
+        public EmailService(ICalculator calculator)
+        {
+            var result = calculator.Add(2, 2);
+        }
+
         public void Send(string emailAddress, string sendMessage)
         {
         }

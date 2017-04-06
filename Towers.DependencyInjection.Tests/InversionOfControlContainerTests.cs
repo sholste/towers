@@ -7,6 +7,39 @@ namespace Towers.DependencyInjection.Tests
 {
     public class InversionOfControlContainerTests
     {
+        #region IsRegistered Tests
+
+        [Fact]
+        public void IsRegistered_TypeRegistered_ReturnsTrue()
+        {
+            // Arrange.
+            var type = typeof(IMock);
+            var mock = new MockInversionOfControlContainer();
+            mock.Register<IMock, Mock>();
+
+            // Act.
+            var result = mock.IsRegistered(type);
+
+            // Assert.
+            Assert.True(result, "expected a registered type to return true");
+        }
+
+        [Fact]
+        public void IsRegistered_TypeNotRegistered_ReturnsFalse()
+        {
+            // Arrange.
+            var type = typeof(IMock);
+            var mock = new MockInversionOfControlContainer();
+
+            // Act.
+            var result = mock.IsRegistered(type);
+
+            // Assert.
+            Assert.False(result, "expected an unregistered type to return false");
+        }
+
+        #endregion
+
         #region ConstructType Tests
 
         [Fact]
